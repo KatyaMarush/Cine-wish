@@ -1,0 +1,108 @@
+.error-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
+  &__container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  &__message {
+    font-size: 1.125rem;
+    color: #a8b2d1;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  &__button {
+    display: inline-block;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    &__container {
+      padding: 0 1rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__message {
+      font-size: 1rem;
+    }
+
+    &__icon {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__title {
+      font-size: 1.75rem;
+    }
+
+    &__message {
+      font-size: 0.9rem;
+    }
+
+    &__icon {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+} 
