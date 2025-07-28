@@ -68,7 +68,7 @@ describe('MovieCard', () => {
     render(<MovieCard movie={mockMovie} />)
 
     const link = screen.getByRole('link')
-    expect(link).toHaveAttribute('href', '/movie/1')
+    expect(link).toHaveAttribute('href', '/movie/1?category=popular')
   })
 
   it('displays formatted release date correctly', () => {
@@ -117,5 +117,12 @@ describe('MovieCard', () => {
 
     expect(screen.getByText('Minimal Movie')).toBeInTheDocument()
     expect(screen.getByText('0.0')).toBeInTheDocument()
+  })
+
+  it('includes category parameter in link when provided', () => {
+    render(<MovieCard movie={mockMovie} category="top_rated" />)
+
+    const link = screen.getByRole('link')
+    expect(link).toHaveAttribute('href', '/movie/1?category=top_rated')
   })
 })
