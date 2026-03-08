@@ -28,8 +28,8 @@ const HomePage: React.FC = () => {
       <div className="home-page__hero">
         <h1 className="home-page__title">Discover Amazing Movies</h1>
         <p className="home-page__subtitle">
-          Explore the latest and greatest films across different categories.
-          Add your favorites to your wishlist and never miss a great movie.
+          Explore the latest and greatest films across different categories. Add your favorites to
+          your wishlist and never miss a great movie.
         </p>
       </div>
 

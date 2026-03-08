@@ -8,7 +8,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -30,7 +31,7 @@
       width: 24px;
       height: 24px;
     }
-    
+
     .loading__message {
       font-size: 0.875rem;
     }
@@ -41,7 +42,7 @@
       width: 40px;
       height: 40px;
     }
-    
+
     .loading__message {
       font-size: 1rem;
     }
@@ -52,7 +53,7 @@
       width: 60px;
       height: 60px;
     }
-    
+
     .loading__message {
       font-size: 1.25rem;
     }
@@ -78,13 +79,13 @@
   .loading {
     padding: 1.5rem;
     min-height: 150px;
-    
+
     &--large {
       .loading__spinner {
         width: 50px;
         height: 50px;
       }
-      
+
       .loading__message {
         font-size: 1.125rem;
       }
@@ -96,16 +97,16 @@
   .loading {
     padding: 1rem;
     min-height: 120px;
-    
+
     &--large {
       .loading__spinner {
         width: 40px;
         height: 40px;
       }
-      
+
       .loading__message {
         font-size: 1rem;
       }
     }
   }
-} 
+}

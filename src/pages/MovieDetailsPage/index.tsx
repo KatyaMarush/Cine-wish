@@ -33,7 +33,8 @@ export default function MovieDetailsPage() {
   }, [navigate])
 
   // Get category from URL parameters, default to 'popular' if not provided
-  const category = (searchParams.get('category') as 'popular' | 'top_rated' | 'now_playing') || 'popular'
+  const category =
+    (searchParams.get('category') as 'popular' | 'top_rated' | 'now_playing') || 'popular'
   const config = useMemo(() => getCategoryConfig(category), [category])
   const isWishlisted = useMemo(
     () => (movie ? isInWishlist(movie.id) : false),

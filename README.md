@@ -92,6 +92,7 @@ cine-wish/
 ### Core Features
 
 **Homepage with Three Movie Carousels**
+
 - Popular Movies: Trending films with system font styling
 - Top Rated Movies: Highest rated films with Georgia serif font
 - Now Playing: Current theatrical releases with monospace font
@@ -99,16 +100,18 @@ cine-wish/
 - Lazy loading for optimal performance
 
 **Movie Details Page**
+
 - Comprehensive movie information display
 - Category-based visual differentiation:
   - Popular: Blue "Add to Wishlist" button
-  - Top Rated: Gold "Add to Favorites" button  
+  - Top Rated: Gold "Add to Favorites" button
   - Now Playing: Green "Save for Later" button
 - Dynamic font families per category
 - Wishlist integration with toggle functionality
 - External website links when available
 
 **Wishlist Management**
+
 - Add/remove movies from personal wishlist
 - Persistent storage using localStorage
 - Bulk clear functionality with confirmation
@@ -116,6 +119,7 @@ cine-wish/
 - Individual movie removal options
 
 **Advanced Features**
+
 - Server-side rendering (SSR) for improved SEO
 - Comprehensive error handling with retry logic
 - Responsive design with mobile-first approach
@@ -125,23 +129,27 @@ cine-wish/
 ### Technical Architecture
 
 **State Management**
+
 - Context API with reducer pattern for wishlist
 - Custom hooks for data fetching and error handling
 - Local storage persistence with error recovery
 
 **API Integration**
+
 - TMDB API integration with retry logic
 - Exponential backoff for failed requests
 - Request timeout handling (10 seconds)
 - Comprehensive error classification
 
 **Performance Optimizations**
+
 - Lazy loading of components and routes
 - React.memo for component memoization
 - Efficient re-render prevention
 - Image lazy loading with proper alt text
 
 **Error Handling**
+
 - Custom error classes (ApiError, NetworkError, ValidationError)
 - Error boundaries for component-level error catching
 - Graceful degradation with fallback UI
@@ -150,12 +158,15 @@ cine-wish/
 ## Installation Requirements
 
 ### Prerequisites
+
 - Node.js (version 16 or higher)
 - npm or yarn package manager
 - Modern web browser with ES6+ support
 
 ### Environment Setup
+
 Create a `.env` file in the project root:
+
 ```
 VITE_TMDB_API_KEY=your_tmdb_api_key_here
 ```
@@ -165,11 +176,13 @@ VITE_TMDB_API_KEY=your_tmdb_api_key_here
 ### Dependencies
 
 **Production Dependencies**
+
 - React 19.1.0 - UI framework
 - React Router DOM 6.23.1 - Client-side routing
 - Express 4.18.2 - SSR server
 
 **Development Dependencies**
+
 - TypeScript 5.8.3 - Type safety
 - Vite 5.4.19 - Build tool and dev server
 - Vitest 3.2.4 - Testing framework
@@ -181,6 +194,7 @@ VITE_TMDB_API_KEY=your_tmdb_api_key_here
 ## Running the Application
 
 ### Development Mode
+
 ```bash
 # Install dependencies
 npm install
@@ -188,9 +202,11 @@ npm install
 # Start development server
 npm run dev
 ```
+
 The application will be available at `http://localhost:5173`
 
 ### Production Build
+
 ```bash
 # Create production build
 npm run build
@@ -200,6 +216,7 @@ npm run preview
 ```
 
 ### Testing
+
 ```bash
 # Run all tests
 npm run test
@@ -212,6 +229,7 @@ npm run test:coverage
 ```
 
 ### Code Quality
+
 ```bash
 # Lint code
 npm run lint
@@ -221,6 +239,7 @@ npm run format
 ```
 
 ### Available Scripts
+
 - `npm run dev` - Start development server with SSR
 - `npm run build` - Create production build
 - `npm run start` - Start production server
@@ -232,16 +251,16 @@ npm run format
 - `npm run format` - Format code with Prettier
 
 ### Browser Support
+
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
 ### Performance Considerations
+
 - Images are lazy-loaded for optimal performance
 - Components are code-split and lazy-loaded
 - SSR provides fast initial page loads
 - Efficient state management prevents unnecessary re-renders
 - Comprehensive caching strategies for API responses
-
-

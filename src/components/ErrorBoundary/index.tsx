@@ -30,10 +30,10 @@ class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // Log error to console or error reporting service
     console.error('ErrorBoundary caught an error:', error, errorInfo)
-    
+
     // Call custom error handler if provided
     this.props.onError?.(error, errorInfo)
-    
+
     // Update state with error info
     this.setState({ errorInfo })
   }
@@ -58,7 +58,7 @@ class ErrorBoundary extends Component<Props, State> {
         return this.props.fallback
       }
 
-      const errorMessage = this.state.error 
+      const errorMessage = this.state.error
         ? getErrorMessage({ message: this.state.error.message })
         : 'An unexpected error occurred'
 
@@ -69,16 +69,16 @@ class ErrorBoundary extends Component<Props, State> {
               <div className="error-boundary__icon">⚠️</div>
               <h1 className="error-boundary__title">Something went wrong</h1>
               <p className="error-boundary__message">{errorMessage}</p>
-              
+
               <div className="error-boundary__actions">
-                <button 
-                  onClick={this.handleRetry} 
+                <button
+                  onClick={this.handleRetry}
                   className="error-boundary__button error-boundary__button--primary"
                 >
                   Try Again
                 </button>
-                <button 
-                  onClick={this.handleReload} 
+                <button
+                  onClick={this.handleReload}
                   className="error-boundary__button error-boundary__button--secondary"
                 >
                   Refresh Page
@@ -89,9 +89,13 @@ class ErrorBoundary extends Component<Props, State> {
                 <details className="error-boundary__details">
                   <summary>Error Details</summary>
                   <div className="error-boundary__error-info">
-                    <p><strong>Error:</strong> {this.state.error.message}</p>
+                    <p>
+                      <strong>Error:</strong> {this.state.error.message}
+                    </p>
                     {this.state.errorInfo && (
-                      <p><strong>Component Stack:</strong></p>
+                      <p>
+                        <strong>Component Stack:</strong>
+                      </p>
                     )}
                     <pre className="error-boundary__error">
                       {this.state.errorInfo?.componentStack || this.state.error.stack}

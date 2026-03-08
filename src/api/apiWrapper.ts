@@ -13,23 +13,23 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 async function handleApiResponse<T>(response: Response, endpoint: string): Promise<T> {
   if (!response.ok) {
     const errorMessage = `API request failed for ${endpoint}: ${response.status} ${response.statusText}`
-    
+
     // Determine if error is retryable
     const retryable = response.status >= 500 || response.status === 429
-    
+
     throw new ApiError(errorMessage, response.status, endpoint, retryable)
   }
 
   try {
     return await response.json()
-      } catch (error) {
-      throw new ApiError(
-        `Failed to parse response from ${endpoint}: ${error}`,
-        undefined,
-        endpoint,
-        false,
-      )
-    }
+  } catch (error) {
+    throw new ApiError(
+      `Failed to parse response from ${endpoint}: ${error}`,
+      undefined,
+      endpoint,
+      false,
+    )
+  }
 }
 
 export const apiCall = async <T>(
@@ -59,21 +59,23 @@ export const apiCall = async <T>(
           'Content-Type': 'application/json',
         },
       })
-      
+
       clearTimeout(timeoutId)
       return await handleApiResponse<T>(response, endpoint)
     } catch (fetchError) {
       clearTimeout(timeoutId)
-      
+
       if (fetchError instanceof Error) {
         if (fetchError.name === 'AbortError') {
           throw new NetworkError('Request timeout. Please try again.')
         }
         if (fetchError.message.includes('Failed to fetch')) {
-          throw new NetworkError('Network connection failed. Please check your internet connection.')
+          throw new NetworkError(
+            'Network connection failed. Please check your internet connection.',
+          )
         }
       }
-      
+
       throw fetchError
     }
   } catch (error) {
@@ -83,19 +85,19 @@ export const apiCall = async <T>(
       await delay(RETRY_DELAY * Math.pow(2, retryCount)) // Exponential backoff
       return apiCall<T>(endpoint, params, retryCount + 1)
     }
-    
+
     // Handle validation errors (don't retry)
     if (error instanceof ValidationError) {
       console.error(`Validation error for ${endpoint}:`, error.message)
       throw error
     }
-    
+
     // Handle network errors (don't retry)
     if (error instanceof NetworkError) {
       console.error(`Network error for ${endpoint}:`, error.message)
       throw error
     }
-    
+
     // Log and rethrow other errors
     console.error(`API call failed for ${endpoint}:`, error)
     throw error

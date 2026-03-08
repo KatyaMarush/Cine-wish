@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import fs from 'fs'
 import path from 'path'
+import { pathToFileURL } from 'url'
 
 export const config = {
   runtime: 'nodejs',
@@ -16,14 +17,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const templatePath = path.join(distClient, 'index.html')
     const template = fs.readFileSync(templatePath, 'utf-8')
 
-    const { render } = await import(path.join(distClient, 'entry-server.js'))
+    const entryServerPath = path.join(distClient, 'entry-server.js')
+    const { render } = await import(pathToFileURL(entryServerPath).href)
     const appHtml = await (render as (url: string) => Promise<string>)(cleanUrl)
 
     const html = template.replace(`<!--ssr-outlet-->`, appHtml)
 
     res.status(200).setHeader('Content-Type', 'text/html').end(html)
   } catch (error) {
-    console.error('SSR error:', error)
+    const message = error instanceof Error ? error.message : String(error)
+    console.error('SSR error:', message, error instanceof Error ? error.stack : '')
     res.status(500).send('Server error')
   }
 }

@@ -124,7 +124,8 @@ export const validateApiKey = (apiKey: string | undefined): void => {
 export const isRetryableError = (error: AppError): boolean => {
   // Don't retry validation errors or 4xx client errors (except 429)
   if (error.code === 'VALIDATION_ERROR') return false
-  if (error.status && error.status >= 400 && error.status < 500 && error.status !== 429) return false
+  if (error.status && error.status >= 400 && error.status < 500 && error.status !== 429)
+    return false
   return error.retryable !== false
 }
 
