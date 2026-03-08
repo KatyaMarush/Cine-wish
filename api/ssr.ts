@@ -12,12 +12,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const url = (req.query.path as string) || req.url || '/'
     const cleanUrl = url.startsWith('/') ? url : `/${url}`
 
-    const distClient = path.join(process.cwd(), 'dist/client')
+    const ssrAssets = path.join(process.cwd(), 'api/ssr-assets')
 
-    const templatePath = path.join(distClient, 'index.html')
+    const templatePath = path.join(ssrAssets, 'index.html')
     const template = fs.readFileSync(templatePath, 'utf-8')
 
-    const entryServerPath = path.join(distClient, 'entry-server.js')
+    const entryServerPath = path.join(ssrAssets, 'entry-server.js')
     const { render } = await import(pathToFileURL(entryServerPath).href)
     const appHtml = await (render as (url: string) => Promise<string>)(cleanUrl)
 
