@@ -1,15 +1,15 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build && rm -rf api/ssr-assets && mkdir -p api/ssr-assets && cp -R dist/client/. api/ssr-assets/",
-  "functions": {
-    "api/ssr.ts": {
-      "includeFiles": "api/ssr-assets/**"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/ssr?path=/$1"
-    }
-  ]
-}
+{                                                                            
+     "$schema": "https://openapi.vercel.sh/vercel.json",                        
+     "buildCommand": "npm run build",                                           
+     "functions": {                                                             
+       "api/ssr.ts": {                                                          
+         "includeFiles": "dist/client/**"                                       
+       }                                                                        
+     },                                                                         
+     "rewrites": [                                                              
+       {                                                                        
+         "source": "/(.*)",                                                     
+         "destination": "/api/ssr?path=/$1"                                     
+       }                                                                        
+     ]                                                                          
+   } 
