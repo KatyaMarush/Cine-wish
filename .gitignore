@@ -14,7 +14,6 @@ yarn-error.log*
 # Build outputs
 dist/
 build/
-api/ssr-assets/
 *.tsbuildinfo
 
 # Logs
