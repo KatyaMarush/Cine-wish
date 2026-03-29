@@ -1,7 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build && rm -rf api/ssr-assets && cp -r dist/client api/ssr-assets",
-  "outputDirectory": "dist/client",
+  "buildCommand": "npm run build && rm -rf api/ssr-assets && mkdir -p api/ssr-assets && cp -R dist/client/. api/ssr-assets/",
   "functions": {
     "api/ssr.ts": {
       "includeFiles": "api/ssr-assets/**"
